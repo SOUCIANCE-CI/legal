@@ -8,7 +8,7 @@ data processor, which is why there is a DPA alongside them.
 
 ## Before submitting the app
 
-- [ ] Replace `SUPPORT_EMAIL_TO_BE_SET` in all four pages with the real support address.
+- [ ] Replace `contact@souciance.com` in all four pages with the real support address.
 - [ ] Have a lawyer read `terms.html` and `dpa.html`. They were drafted to be accurate
       about what the app does, not to be bulletproof in court.
 
