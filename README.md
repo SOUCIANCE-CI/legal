@@ -37,8 +37,7 @@ Also outstanding, but neither is a document:
 ## Keeping them true
 
 These pages make verifiable claims. **If the app's behaviour changes, these change in the
-same commit.** A privacy policy that drifts from the code is worse than none, and three
-independent reviews caught exactly that in version 1.
+same commit.** A privacy policy that drifts from the code is worse than none.
 
 | Claim | Where it is true in the code |
 |---|---|
@@ -54,13 +53,3 @@ The TIA commits to a review on any change to egress, write permissions, storage 
 logging, or sub-processors. That list is not decorative: it is the trigger condition for
 redoing the assessment.
 
-## What version 1 got wrong
-
-Worth remembering, because the mistake was structural rather than careless. Version 1
-argued that because all data stays inside Atlassian, there was no international transfer.
-That is wrong: under Chapter V, a transfer is about who the data becomes *available to*,
-not where the servers are. The vendor is in Côte d'Ivoire, so there is a transfer.
-
-The facts were right and the conclusion was wrong. Version 2 keeps every fact and replaces
-the conclusion: not "there is no transfer" but "there is a transfer, and here is why it
-carries less risk than most".
