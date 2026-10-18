@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy - Missing Time</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="dpa.html">Data processing</a></nav>
+
+<h1>Privacy Policy</h1>
+<p class="sub">Missing Time for Jira. Last updated 18 October 2026.</p>
+
+<h2>Who we are</h2>
+<p>Missing Time is published on the Atlassian Marketplace by Christopher Dato, operating
+as an individual developer in Côte d'Ivoire. For any question about this policy or about
+data handled by the app, write to
+<a href="mailto:SUPPORT_EMAIL_TO_BE_SET">SUPPORT_EMAIL_TO_BE_SET</a>.</p>
+
+<h2>The short version</h2>
+<p><strong>The app sends no data anywhere.</strong> It runs entirely inside Atlassian's
+own infrastructure on the Forge platform. It makes no network calls to any server
+operated by us or by any third party, it contains no analytics, no tracking and no
+advertising, and it never writes to your Jira data.</p>
+
+<h2>What the app reads from Jira</h2>
+<table>
+  <tr><th>Data</th><th>Why</th></tr>
+  <tr>
+    <td>Worklogs: author account ID, date started, duration</td>
+    <td>To calculate how much time each person logged on each day. This is the entire
+    purpose of the app.</td>
+  </tr>
+  <tr>
+    <td>Users: account ID, display name, avatar URL, active status, account type</td>
+    <td>To list the people a report covers, and to exclude bot and integration accounts
+    which never owe a timesheet.</td>
+  </tr>
+  <tr>
+    <td>The signed-in user's own profile</td>
+    <td>To confirm who is using the app.</td>
+  </tr>
+</table>
+<p>The app requests the scopes <code>read:jira-work</code>, <code>read:jira-user</code>
+and <code>storage:app</code>. All three are read-only with respect to your Jira content;
+the app holds no permission to create, modify or delete anything in Jira.</p>
+
+<h2>What the app stores, and where</h2>
+<p>Storage uses Atlassian Forge's hosted key-value store. The data stays within the
+Atlassian infrastructure serving your site, under Atlassian's own security and data
+residency arrangements. We operate no database and hold no copy.</p>
+<table>
+  <tr><th>Stored</th><th>Contents</th><th>Retention</th></tr>
+  <tr>
+    <td>Settings</td>
+    <td>Expected hours per working day, public holiday dates, and per-person overrides
+    (hours per day, and whether a person is expected to log time at all), keyed by
+    Atlassian account ID.</td>
+    <td>Until changed or until the app is uninstalled.</td>
+  </tr>
+  <tr>
+    <td>Roster</td>
+    <td>Account ID and display name of the people the report covers. Required because the
+    scheduled scan runs without a signed-in user and cannot list Jira users on its own.</td>
+    <td>Refreshed each time the app is opened. Removed on uninstall.</td>
+  </tr>
+  <tr>
+    <td>Weekly history</td>
+    <td>One record per week: the week's dates, and for each person who logged less than
+    expected, their account ID, display name and the shortfall in hours.</td>
+    <td><strong>26 weeks maximum.</strong> Older weeks are deleted automatically.</td>
+  </tr>
+</table>
+<p>No worklog is ever copied into this store. Hours shown on screen are read from Jira
+each time a report is run.</p>
+
+<h2>Who else sees it</h2>
+<p>Nobody. There are no sub-processors, no third-party services, no external APIs. We do
+not sell, rent or share any data, and we have no technical means of accessing a
+customer's stored data remotely.</p>
+
+<h2>Roles under data protection law</h2>
+<p>Where the GDPR or comparable law applies, the customer organisation installing the app
+is the <strong>data controller</strong> and we act as a <strong>data processor</strong> on
+their instructions. The
+<a href="dpa.html">Data Processing Addendum</a> sets out the terms of that relationship.</p>
+<p>The app processes information about employees' working time. Requests from individuals
+to access, correct or erase their data should be addressed to their own organisation,
+which controls the Jira site and can remove the data directly.</p>
+
+<h2>Deleting everything</h2>
+<p>Uninstalling the app removes all data it stored. Nothing is retained, archived or
+backed up by us, because we never held it.</p>
+
+<h2>Changes</h2>
+<p>If this policy changes materially, the updated version is published here with a new
+date. The Marketplace listing always links to the current version.</p>
+
+<footer>
+Missing Time is an independent app and is not affiliated with or endorsed by Atlassian.
+Jira is a trademark of Atlassian Pty Ltd.
+</footer>
+
+</body>
+</html>
