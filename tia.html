@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transfer Impact Assessment - Missing Time</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="dpa.html">Data processing</a><a href="scc-annexes.html">SCC annexes</a><a href="tia.html">Transfers</a><a href="dpia.html">DPIA pack</a></nav>
+
+<h1>Transfer Impact Assessment</h1>
+<p class="sub">Missing Time for Jira. Version 1, 18 October 2026. Next review October 2027.</p>
+
+<p>Carried out under Case C-311/18 (Schrems II) and EDPB Recommendations 01/2020, to
+assess whether the Standard Contractual Clauses relied on in section 7.2 of the
+<a href="dpa.html">Data Processing Addendum</a> provide an essentially equivalent level of
+protection in practice.</p>
+
+<p>It is published rather than provided on request, because a customer's own assessment is
+easier if ours is already on the table.</p>
+
+<h2>Step 1 &mdash; Map the transfer</h2>
+<p>The exporter is a customer organisation in the EEA. The importer is Christopher Dato,
+an individual developer established in Abidjan, Côte d'Ivoire.</p>
+<p><strong>No data is sent to Côte d'Ivoire.</strong> All personal data processed by the
+app is read from, and written to, the Atlassian Forge infrastructure serving the customer's
+own Jira site. The importer operates no server, no database, no backup and no storage of
+any kind, and holds no credential to the customer's site.</p>
+<p>The transfer arises solely because the importer, established in a third country, is the
+party that writes and deploys the code executing on that data, and may be able to see the
+application's logs. Under EDPB Guidelines 05/2021 that is enough: making data available to
+an entity in a third country is a transfer, and remote access counts even where the data
+never moves.</p>
+<p>Scope of the data is set out in <a href="scc-annexes.html">Annex I.B</a>. In summary:
+account identifiers, display names, and a comparison between hours logged and hours
+expected. No special category data, no issue content, no email address.</p>
+
+<h2>Step 2 &mdash; Transfer tool</h2>
+<p>Standard Contractual Clauses, Implementing Decision (EU) 2021/914, Module Two
+(controller to processor), with annexes published at
+<a href="scc-annexes.html">scc-annexes.html</a>. UK and Swiss variants as stated in the
+Addendum.</p>
+
+<h2>Step 3 &mdash; Law and practice of the third country</h2>
+<p>Côte d'Ivoire has a data protection statute, Law No. 2013-450 of 19 June 2013 on the
+protection of personal data, and a supervisory authority, the Autorité de Régulation des
+Télécommunications/TIC de Côte d'Ivoire (ARTCI). It also has cybercrime legislation,
+Law No. 2013-451, under which authorities hold investigative and production powers.</p>
+<p>No adequacy decision exists for Côte d'Ivoire under Article 45 GDPR, so the existence of
+a national framework does not remove the need for safeguards. It is noted as context, not
+as a substitute.</p>
+<p><strong>The question that matters is narrower than "what are the surveillance laws".</strong>
+It is: could a public authority of Côte d'Ivoire compel the importer to produce the
+customer's personal data? That depends on what the importer holds, which is the subject of
+step 4.</p>
+
+<h2>Step 4 &mdash; Assessment of the practical risk</h2>
+
+<h3>4.1 The decisive point</h3>
+<p><strong>There is nothing at the importer's end to seize.</strong></p>
+<p>An order served on the importer by any authority, Ivorian or otherwise, could not
+produce the customer's data, because the importer holds:</p>
+<ul>
+  <li>no copy of it, in any form, at any time;</li>
+  <li>no credential allowing sign-in to the customer's Jira site;</li>
+  <li>no server, database, backup or export;</li>
+  <li>no interface or command by which Forge would disclose a customer installation's
+  stored data to a developer.</li>
+</ul>
+<p>Compliance with such an order would be factually impossible rather than legally
+resisted. This is a materially stronger position than encryption or key-holding
+arrangements, which are the measures usually proposed in response to Schrems II, because
+there is no ciphertext and no key: there is no data.</p>
+
+<h3>4.2 The residual risk, stated honestly</h3>
+<p>Two paths exist and are not dismissed.</p>
+<p><strong>The code.</strong> The importer writes the software that runs on the data inside
+Forge. A future version could be written to write personal data into the application logs,
+which the importer may be able to read. A version adding an outbound network permission
+would require a major version and explicit re-approval by the customer's administrator; a
+version that merely logs would not. This is the genuine access path, and it is addressed by
+the supplementary measures in step 5 rather than denied.</p>
+<p><strong>Support correspondence.</strong> A customer who emails a screenshot of the
+report sends personal data to Côte d'Ivoire in the ordinary sense. This is the one place
+where data really does arrive at the importer's end. It is addressed by asking customers
+not to do it, by using the data only to resolve the request, and by deleting it on
+closure.</p>
+
+<h3>4.3 Likelihood</h3>
+<p>The importer has received no request from any public authority for access to customer
+data, in Côte d'Ivoire or elsewhere. The data concerned is working-time administration of
+private-sector employees, of no evident interest to law enforcement or national security.
+The customer base consists of businesses using Jira. No category of data subject at
+heightened risk is involved.</p>
+
+<h2>Step 5 &mdash; Supplementary measures</h2>
+<p>Contractual and organisational measures, each aimed at the residual risk identified in
+step 4.2 rather than at a generic checklist. All are binding on the importer through
+section 7.3 of the Addendum.</p>
+<table>
+  <tr><th>Measure</th><th>Risk addressed</th></tr>
+  <tr><td>No local copy of personal data will be downloaded, exported or replicated out of
+  Atlassian infrastructure, by any means, including for debugging.</td>
+  <td>Removes the possibility of a seizable copy coming into existence.</td></tr>
+  <tr><td>No outbound network permission will be introduced without updating the Addendum,
+  and is in any event subject to the customer's administrator approval.</td>
+  <td>Keeps the architectural guarantee in place.</td></tr>
+  <tr><td>No personal data in logs. Logging is restricted to aggregate counts and
+  non-personal diagnostics, re-verified at each release.</td>
+  <td>Closes the code path identified in 4.2.</td></tr>
+  <tr><td>Public authority requests handled under Clause 15: prompt notification where
+  lawful, challenge where grounds exist, minimum disclosure if compelled.</td>
+  <td>Procedural safeguard for the unlikely case.</td></tr>
+  <tr><td>Annual transparency reporting on request, including nil returns.</td>
+  <td>Lets the customer verify the assumption in 4.3 rather than take it on trust.</td></tr>
+  <tr><td>Customers are asked not to send screenshots or exports containing employee names
+  to support; such material is used only to resolve the request and deleted on
+  closure.</td>
+  <td>Addresses the support correspondence path.</td></tr>
+</table>
+
+<h2>Step 6 &mdash; Conclusion and re-evaluation</h2>
+<p>With the Standard Contractual Clauses and the supplementary measures above, the transfer
+achieves a level of protection essentially equivalent to that guaranteed within the EEA.
+The determining factor is not a contractual promise but a structural one: the importer
+holds no copy of the data and no means of obtaining one, so the government access risk
+that Schrems II is concerned with has almost no surface to act on.</p>
+<p>This assessment is reviewed at least annually, and immediately on any of the following:
+a change to the application's egress or write permissions; a change to the storage keys or
+to logging; the engagement of a new sub-processor; a material change to Ivorian law
+relevant to access by public authorities; or receipt of any request from a public authority
+for customer data.</p>
+
+<footer>
+Missing Time is an independent app and is not affiliated with or endorsed by Atlassian.
+Jira is a trademark of Atlassian Pty Ltd.
+</footer>
+
+</body>
+</html>

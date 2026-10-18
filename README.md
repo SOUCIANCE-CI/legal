@@ -2,30 +2,43 @@
 
 Published via GitHub Pages at https://souciance-ci.github.io/legal/
 
-## Still required before charging money
+| Page | What it is |
+|---|---|
+| `privacy.html` | Privacy policy |
+| `terms.html` | End user licence agreement |
+| `dpa.html` | Data processing addendum, incorporating the SCCs |
+| `scc-annexes.html` | Annexes I, II and III to the Standard Contractual Clauses |
+| `tia.html` | Transfer impact assessment (Schrems II) |
+| `dpia.html` | DPIA support pack, for the customer's Article 35 assessment |
 
-- [ ] **Appoint an EU representative (GDPR Art. 27) and a UK representative.** The app
-      systematically monitors the behaviour of people in the EU, so the "occasional
-      processing" exemption does not apply. Specialist providers do this for a few hundred
-      euros a year. **Do not publish a clause claiming a representative exists until one is
-      actually mandated in writing.**
-- [ ] **Complete the SCC Schedule** (Annexes I, II and III of Implementing Decision (EU)
-      2021/914). The addendum incorporates the Clauses and refers to a Schedule that is not
-      yet written.
-- [ ] **Write the transfer impact assessment.** The addendum says one exists and is
-      available on request. Four to six pages. Its conclusion is already strong: there is
-      no copy of customer data anywhere we control, so there is nothing an authority could
-      compel us to hand over.
-- [ ] **Write the DPIA support pack.** Section 9.2 promises it.
+Everything is published rather than "available on request". A compliance reviewer who can
+read the answer in thirty seconds does not open a ticket.
+
+## The one thing still missing
+
+- [ ] **Appoint an EU representative (GDPR Art. 27) and a UK representative.**
+
+This is the only remaining gap, and it cannot be written: it requires actually mandating a
+company in the EU and in the UK, in writing, and paying them. Specialist providers do this
+for a few hundred euros a year each.
+
+It is required because the app systematically monitors the behaviour of people in the EU,
+which rules out the "occasional processing" exemption in Art. 27(2)(a). **Do not publish
+a clause claiming a representative exists until one is actually mandated**, and add their
+name and postal address to the privacy policy and the addendum once they are.
+
+Also outstanding, but neither is a document:
+
 - [ ] Have a lawyer read `terms.html` and `dpa.html`.
+- [ ] Decide on a company structure before the first paying customer. Processing other
+      companies' HR data as a natural person means personal assets answer for professional
+      liabilities.
 
 ## Keeping them true
 
 These pages make verifiable claims. **If the app's behaviour changes, these change in the
 same commit.** A privacy policy that drifts from the code is worse than none, and three
 independent reviews caught exactly that in version 1.
-
-Current claims correspond to:
 
 | Claim | Where it is true in the code |
 |---|---|
@@ -36,6 +49,10 @@ Current claims correspond to:
 | No outbound network call | absence of `permissions.external` in `manifest.yml` |
 | No write to Jira | scopes in `manifest.yml` are read-only |
 | No personal data in logs | `console.log` calls in `src/resolvers/scheduled.js` |
+
+The TIA commits to a review on any change to egress, write permissions, storage keys,
+logging, or sub-processors. That list is not decorative: it is the trigger condition for
+redoing the assessment.
 
 ## What version 1 got wrong
 

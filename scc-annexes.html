@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standard Contractual Clauses - Annexes - Missing Time</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="dpa.html">Data processing</a><a href="scc-annexes.html">SCC annexes</a><a href="tia.html">Transfers</a><a href="dpia.html">DPIA pack</a></nav>
+
+<h1>Standard Contractual Clauses: Annexes</h1>
+<p class="sub">Schedule to the <a href="dpa.html">Data Processing Addendum</a>.
+Implementing Decision (EU) 2021/914, Module Two (controller to processor).
+Version 1, 18 October 2026.</p>
+
+<p>These annexes complete the Standard Contractual Clauses incorporated by section 7.2 of
+the Addendum. They are published rather than negotiated per customer, so that you can read
+them before installing rather than after.</p>
+
+<h2>Annex I.A &mdash; List of parties</h2>
+
+<p><strong>Data exporter (controller)</strong></p>
+<table>
+  <tr><th>Name</th><td>The organisation that installs the app, as identified in the
+  Atlassian Marketplace licence record.</td></tr>
+  <tr><th>Address</th><td>As stated in that licence record.</td></tr>
+  <tr><th>Contact</th><td>The technical contact on the licence.</td></tr>
+  <tr><th>Activities</th><td>Use of Missing Time for Jira to report on time logged by
+  users of its own Jira site.</td></tr>
+  <tr><th>Role</th><td>Controller.</td></tr>
+</table>
+
+<p><strong>Data importer (processor)</strong></p>
+<table>
+  <tr><th>Name</th><td>Christopher Dato, individual developer.</td></tr>
+  <tr><th>Address</th><td>Abidjan, Côte d'Ivoire. Full postal address on request to
+  contact@souciance.com.</td></tr>
+  <tr><th>Contact</th><td>contact@souciance.com</td></tr>
+  <tr><th>Activities</th><td>Development and maintenance of Missing Time for Jira, an
+  application executing inside Atlassian Forge.</td></tr>
+  <tr><th>Role</th><td>Processor.</td></tr>
+</table>
+
+<h2>Annex I.B &mdash; Description of the transfer</h2>
+
+<table>
+  <tr><th>Categories of data subjects</th>
+  <td>Users of the data exporter's Jira site, typically its employees and
+  contractors.</td></tr>
+
+  <tr><th>Categories of personal data</th>
+  <td>Atlassian account ID; display name; avatar URL (read, not stored); time logged per
+  person per day (read, not stored); shortfall against expected hours per week (derived,
+  stored); number of consecutive weeks short (derived, stored); expected hours and
+  exclusion flags set by the exporter (stored).</td></tr>
+
+  <tr><th>Sensitive data</th>
+  <td>None is requested or intentionally processed. The app does not use issue content,
+  comments, attachments or email addresses. Jira worklog objects may themselves contain a
+  free-text comment written by the employee; it is discarded at the boundary and never
+  stored, displayed, exported or logged.</td></tr>
+
+  <tr><th>Frequency of the transfer</th>
+  <td>Continuous for as long as the app is installed. Reads occur when an administrator
+  opens the report, and once daily when the scheduled scan runs.</td></tr>
+
+  <tr><th>Nature of the processing</th>
+  <td>Automated reading, aggregation, comparison against a configured expectation, and
+  short-term retention of the comparison. No decision about any individual is taken by the
+  app.</td></tr>
+
+  <tr><th>Purpose</th>
+  <td>Identifying users of the exporter's Jira site who have logged less working time than
+  the exporter expects of them, and retaining a limited history of that comparison so that
+  repeated shortfalls can be distinguished from isolated ones.</td></tr>
+
+  <tr><th>Retention</th>
+  <td>Settings and roster: until changed, or until the app is uninstalled. Weekly history:
+  26 weeks, pruned by age both when the scan runs and when an administrator opens the app.
+  All three are deleted by the app itself on uninstall.</td></tr>
+
+  <tr><th>Transfers to sub-processors</th>
+  <td>Atlassian Pty Ltd and its affiliates, which provide the runtime and the storage. For
+  the duration of the installation, for the purpose stated above.</td></tr>
+</table>
+
+<h2>Annex I.C &mdash; Competent supervisory authority</h2>
+<p>The supervisory authority of the Member State in which the data exporter is
+established. Where the exporter is not established in the EEA but has designated a
+representative under Article 27 GDPR, the authority of the Member State where that
+representative is established. Where neither applies, the authority of the Member State in
+which the data subjects whose personal data is transferred are located.</p>
+
+<h2>Annex II &mdash; Technical and organisational measures</h2>
+
+<p>Measures the importer applies under Article 32 GDPR and Clause 8.6 of the Clauses.
+Several are properties of the architecture rather than policies, which is noted where it
+is the case: a property cannot be quietly relaxed, a policy can.</p>
+
+<table>
+  <tr><th>Measure</th><th>Implementation</th></tr>
+
+  <tr><td><strong>Pseudonymisation and minimisation</strong></td>
+  <td>Stored records are keyed on Atlassian account IDs. No worklog is copied into storage.
+  No avatar and no email address is stored. Worklog objects are reduced to three fields at
+  the moment the API response arrives, so unused fields do not persist even in
+  memory.</td></tr>
+
+  <tr><td><strong>Confidentiality</strong></td>
+  <td>Encryption in transit and at rest is provided by the Forge platform for all stored
+  and transmitted data. The importer operates no server, no database and no backup, and
+  holds no credential to the exporter's site.</td></tr>
+
+  <tr><td><strong>Access control</strong></td>
+  <td>The report, its settings and the manual scan require Jira administrator permission,
+  enforced server-side in every resolver rather than hidden in the interface. The
+  importer's Atlassian developer account, the only route by which the application code can
+  be changed, is protected by multi-factor authentication.</td></tr>
+
+  <tr><td><strong>Limitation of outbound data flow</strong></td>
+  <td><em>Architectural.</em> The application manifest declares no egress permission, so
+  the Forge runtime blocks any network call other than to the Atlassian APIs of the
+  exporter's own site. Adding such a permission would constitute a major version and would
+  be presented to the exporter's administrator for explicit approval before taking
+  effect.</td></tr>
+
+  <tr><td><strong>Limitation of write access</strong></td>
+  <td><em>Architectural.</em> The manifest requests only read scopes on Jira content. The
+  application holds no permission to create, modify or delete anything in Jira.</td></tr>
+
+  <tr><td><strong>Logging</strong></td>
+  <td>Application logs contain aggregate counts and non-personal diagnostics only. The
+  scheduled scan catches its own errors so that no identifier specific to the exporter
+  reaches a stack trace.</td></tr>
+
+  <tr><td><strong>Retention and erasure</strong></td>
+  <td>Weekly history is pruned by date, on write and on read, so retention continues to
+  operate even if the scheduled scan stops. An uninstall trigger deletes all three storage
+  keys.</td></tr>
+
+  <tr><td><strong>Availability and restoration</strong></td>
+  <td>Provided by the Forge platform. Most stored data is derived and can be rebuilt from
+  the exporter's own Jira worklogs; only the weekly history and the settings cannot.</td></tr>
+
+  <tr><td><strong>Testing and review</strong></td>
+  <td>Each release is reviewed to re-verify that the manifest declares no egress permission
+  and no write scope, and that logging remains non-personal.</td></tr>
+
+  <tr><td><strong>Measures for sub-processors</strong></td>
+  <td>The sole sub-processor is Atlassian, whose security programme, certifications and
+  data residency options the exporter already engages directly for Jira itself.</td></tr>
+</table>
+
+<h2>Annex III &mdash; List of sub-processors</h2>
+<table>
+  <tr><th>Name</th><th>Address</th><th>Processing</th></tr>
+  <tr>
+    <td>Atlassian Pty Ltd and its affiliates</td>
+    <td>Level 6, 341 George Street, Sydney NSW 2000, Australia</td>
+    <td>Provision of the Forge runtime on which the application executes and of the
+    key-value storage it writes to. Hosting region follows the exporter's own Atlassian
+    site.</td>
+  </tr>
+</table>
+<p>There is no other sub-processor. Changes are notified to the technical contact on the
+licence and published here at least thirty days in advance, as set out in section 6 of the
+Addendum.</p>
+
+<footer>
+Missing Time is an independent app and is not affiliated with or endorsed by Atlassian.
+Jira is a trademark of Atlassian Pty Ltd.
+</footer>
+
+</body>
+</html>

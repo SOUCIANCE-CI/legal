@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DPIA support pack - Missing Time</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="dpa.html">Data processing</a><a href="scc-annexes.html">SCC annexes</a><a href="tia.html">Transfers</a><a href="dpia.html">DPIA pack</a></nav>
+
+<h1>DPIA support pack</h1>
+<p class="sub">Missing Time for Jira. Version 1, 18 October 2026.</p>
+
+<p>Promised by section 9.2 of the <a href="dpa.html">Data Processing Addendum</a>, which
+commits us to assist you under Article 28(3)(f) GDPR.</p>
+
+<p><strong>This is not your DPIA.</strong> The assessment is yours to carry out and to sign,
+because you decide why the app is used, on whom, and what happens to its output. What
+follows is the half of the work we can do for you: an accurate description of the
+processing, and an honest list of the risks we can see from where we sit.</p>
+
+<h2>1. Will you need a DPIA at all?</h2>
+<p>Probably yes. Against the WP248 rev.01 criteria, this processing meets at least four:</p>
+<ul>
+  <li><strong>Evaluation or scoring.</strong> The app counts consecutive weeks in which a
+  person logged less than expected and highlights anyone short three weeks running.</li>
+  <li><strong>Systematic monitoring.</strong> A scheduled scan runs daily and keeps 26
+  weeks of records.</li>
+  <li><strong>Vulnerable data subjects.</strong> WP248 names employees specifically,
+  because of the imbalance of power in the employment relationship.</li>
+  <li><strong>Matching or combining datasets.</strong> Jira worklogs are compared against
+  an expectation and a holiday calendar that you configure.</li>
+</ul>
+<p>Two criteria normally suffice to presume a DPIA is required. Several national
+supervisory authorities also list employee-monitoring processing on their Article 35(4)
+lists. We would plan on doing one.</p>
+
+<h2>2. Description of the processing</h2>
+
+<h3>2.1 Data flow</h3>
+<ol>
+  <li>A Jira administrator opens the report. The app reads the site's active user accounts
+  and saves a roster of account IDs and display names.</li>
+  <li>The app queries Jira for worklogs in the selected date range. Each worklog object is
+  reduced to three fields on arrival: author account ID, start date, duration. Everything
+  else, including any free-text comment the employee wrote and the author's profile fields,
+  is discarded at that point.</li>
+  <li>Hours are totalled per person per day and compared against the expectation you
+  configured, after deducting weekends, your configured public holidays and any per-person
+  exemption.</li>
+  <li>Once daily, a scheduled job repeats the comparison for the last completed week and
+  records who fell short, by how much. It keeps 26 weeks.</li>
+  <li>From that history the app derives, per person, the number of consecutive recent weeks
+  they were short.</li>
+</ol>
+
+<h3>2.2 What is stored, and for how long</h3>
+<p>Three keys in Atlassian Forge storage, inside the infrastructure serving your own site.
+Full detail in <a href="privacy.html">the Privacy Policy</a> and
+<a href="scc-annexes.html">Annex I.B</a>. In summary: your settings; a roster of account
+IDs and names; and 26 weeks of per-week shortfall records. No worklog is ever copied.</p>
+
+<h3>2.3 Who can see it</h3>
+<p>Jira administrators only. The report, the settings and the manual scan are all
+restricted, enforced on the server rather than hidden in the interface.</p>
+
+<h3>2.4 Necessity and proportionality</h3>
+<p>Points you will probably want in your own assessment:</p>
+<ul>
+  <li>The app reads data your organisation already holds. It creates no new collection of
+  employee data, and adds no tracking, no screenshots, no keystrokes, no location and no
+  activity monitoring.</li>
+  <li>It stores no worklog. What it keeps is a comparison, not a record of what people
+  did.</li>
+  <li>Retention is 26 weeks and is enforced by age, not by volume.</li>
+  <li>Access is limited to administrators, which is narrower than the Jira worklog data
+  itself, visible to anyone who can see the issue.</li>
+  <li>The app takes no decision. It produces a figure for a human to interpret.</li>
+</ul>
+
+<h2>3. Risks, and what reduces them</h2>
+<p>Written from the vendor's side. You will have risks we cannot see, arising from how you
+use it.</p>
+
+<table>
+  <tr><th>Risk</th><th>Why it is real</th><th>What reduces it</th></tr>
+
+  <tr>
+    <td><strong>A number is wrong and someone is blamed for it</strong></td>
+    <td>The app knows nothing about leave, sickness, part-time arrangements you have not
+    configured, or work done outside Jira. A person on holiday looks identical to a person
+    who did not log.</td>
+    <td>Per-person hours and exclusions, a holiday calendar, and a visible flag on
+    implausible days. Section 6 of the Licence Agreement states the output must not be the
+    sole basis for a pay or disciplinary decision. <strong>Configure leave before you
+    deploy, not after the first complaint.</strong></td>
+  </tr>
+
+  <tr>
+    <td><strong>Function creep towards discipline</strong></td>
+    <td>A consecutive-weeks counter is designed to make a pattern visible. The step from
+    "visible" to "evidence in a disciplinary file" is short and nobody has to decide to
+    take it.</td>
+    <td>Decide in advance what the output is for and write it down. If the purpose is
+    chasing missing timesheets, the counter is proportionate; if it becomes performance
+    assessment, that is a different purpose needing its own basis and its own
+    assessment.</td>
+  </tr>
+
+  <tr>
+    <td><strong>Inference of special category data</strong></td>
+    <td>Repeated shortfalls on particular days can suggest a medical condition, a
+    pregnancy, a religious observance, or caring responsibilities. The app does not know
+    this; a manager reading the grid might.</td>
+    <td>No special category data is requested or stored. The exposure is in
+    interpretation, which is why access is limited to administrators and why the policy
+    says plainly that the app only compares two numbers.</td>
+  </tr>
+
+  <tr>
+    <td><strong>Exports leave the perimeter</strong></td>
+    <td>The export produces a named list, ready to paste into a chat or a spreadsheet. Once
+    pasted it is outside Jira, outside Forge and outside any retention rule.</td>
+    <td>Export is restricted to administrators. Beyond that it is yours to govern: decide
+    who may export, where it may be pasted, and how long it is kept.</td>
+  </tr>
+
+  <tr>
+    <td><strong>Transparency failure towards employees</strong></td>
+    <td>People are measured weekly by software they may not know exists. That is a
+    transparency problem before it is a security one.</td>
+    <td>The "How the app evaluates people" section of our
+    <a href="privacy.html">Privacy Policy</a> is written to be readable by the people being
+    measured, and may be reused in your own notice.</td>
+  </tr>
+
+  <tr>
+    <td><strong>Former employees persist in the history</strong></td>
+    <td>Someone who left four months ago remains named in records of weeks that already
+    happened.</td>
+    <td>Records age out at 26 weeks. Removing someone from Jira or excluding them in
+    Settings stops them appearing in new reports.</td>
+  </tr>
+
+  <tr>
+    <td><strong>Vendor outside the EEA</strong></td>
+    <td>We are in Côte d'Ivoire, a country without an adequacy decision.</td>
+    <td>Standard Contractual Clauses and a published
+    <a href="tia.html">transfer impact assessment</a>. We hold no copy of your data, so
+    there is nothing at our end for an authority to seize.</td>
+  </tr>
+</table>
+
+<h2>4. What you must do, and we cannot</h2>
+<ul>
+  <li><strong>Choose a lawful basis.</strong> Consent is generally not valid between
+  employer and employee because of the imbalance of power. Measuring working time may rest
+  on a legal obligation in your country; the consecutive-weeks measure is a separate
+  purpose and will usually need legitimate interest with a documented balancing test.</li>
+  <li><strong>Consult employee representatives</strong> where required. In several
+  countries deploying a time-monitoring tool engages the works council, and in some of them
+  data gathered without that step cannot lawfully be used at all. This is the step most
+  often skipped and the most expensive to skip.</li>
+  <li><strong>Inform the individuals</strong> under Articles 13 and 14, including about the
+  weekly history and the consecutive-weeks measure.</li>
+  <li><strong>Keep a human in the loop.</strong> No decision with legal or similarly
+  significant effects, including any disciplinary measure, may rest solely on the app's
+  output.</li>
+  <li><strong>Keep the roster current</strong> by opening the app after a departure.</li>
+</ul>
+
+<h2>5. Asking us something</h2>
+<p>Write to <a href="mailto:contact@souciance.com">contact@souciance.com</a>. We answer
+reasonable written questions in support of your assessment, and we would rather answer a
+specific question than be told later that the pack was not enough.</p>
+
+<footer>
+Missing Time is an independent app and is not affiliated with or endorsed by Atlassian.
+Jira is a trademark of Atlassian Pty Ltd.
+</footer>
+
+</body>
+</html>
