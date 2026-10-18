@@ -11,46 +11,59 @@
 <nav><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="dpa.html">Data processing</a></nav>
 
 <h1>Privacy Policy</h1>
-<p class="sub">Missing Time for Jira. Last updated 18 October 2026.</p>
+<p class="sub">Missing Time for Jira. Version 2, 18 October 2026.
+Earlier versions are in the <a href="https://github.com/SOUCIANCE-CI/legal">page history</a>.</p>
 
 <h2>Who we are</h2>
-<p>Missing Time is published on the Atlassian Marketplace by Christopher Dato, operating
-as an individual developer in Côte d'Ivoire. For any question about this policy or about
-data handled by the app, write to
-<a href="mailto:contact@souciance.com">contact@souciance.com</a>.</p>
+<p>Missing Time is published on the Atlassian Marketplace by Christopher Dato, operating as
+an individual developer established in Abidjan, Côte d'Ivoire. Write to
+<a href="mailto:contact@souciance.com">contact@souciance.com</a> for anything in this
+policy. For a suspected security problem, use the same address with
+<code>[SECURITY]</code> in the subject; that channel is checked daily.</p>
 
-<h2>The short version</h2>
-<p><strong>The app sends no data anywhere.</strong> It runs entirely inside Atlassian's
-own infrastructure on the Forge platform. It makes no network calls to any server
-operated by us or by any third party, it contains no analytics, no tracking and no
-advertising, and it never writes to your Jira data.</p>
+<h2>Two different roles</h2>
+<p>This matters more than it sounds, because the answers differ.</p>
+<ul>
+  <li>For everything the app does inside your Jira site, you are the
+  <strong>controller</strong> and we are your <strong>processor</strong>. We act on your
+  instructions. The <a href="dpa.html">Data Processing Addendum</a> governs it.</li>
+  <li>For the licence and support records we receive about your purchase, we are the
+  <strong>controller</strong> in our own right. That is covered further down, and it is the
+  only personal data that genuinely reaches us in Côte d'Ivoire.</li>
+</ul>
 
 <h2>What the app reads from Jira</h2>
 <table>
   <tr><th>Data</th><th>Why</th></tr>
   <tr>
-    <td>Worklogs: author account ID, date started, duration</td>
-    <td>To calculate how much time each person logged on each day. This is the entire
+    <td>Worklogs: author account ID, start date, duration</td>
+    <td>To calculate how much time each person logged on each day. This is the whole
     purpose of the app.</td>
   </tr>
   <tr>
     <td>Users: account ID, display name, avatar URL, active status, account type</td>
-    <td>To list the people a report covers, and to exclude bot and integration accounts
+    <td>To list the people a report covers, and to exclude bot and integration accounts,
     which never owe a timesheet.</td>
   </tr>
-  <tr>
-    <td>The signed-in user's own profile</td>
-    <td>To confirm who is using the app.</td>
-  </tr>
 </table>
-<p>The app requests the scopes <code>read:jira-work</code>, <code>read:jira-user</code>
-and <code>storage:app</code>. All three are read-only with respect to your Jira content;
-the app holds no permission to create, modify or delete anything in Jira.</p>
+<p>The app requests <code>read:jira-work</code>, <code>read:jira-user</code> and
+<code>storage:app</code>. It holds no permission to create, modify or delete anything in
+Jira.</p>
+<p><strong>One honest qualification.</strong> <code>read:jira-work</code> is broader than
+what the app uses; Atlassian offers no worklog-only alternative. And Jira's worklog objects
+can carry a free-text comment written by the employee, which may say anything at all. The
+app discards every field except the author's account ID, the start date and the duration,
+at the moment the response arrives. Nothing else is used, stored, displayed, exported or
+logged. We would rather tell you that than claim the app cannot see it.</p>
+
+<h2>Who can open the report</h2>
+<p>Only <strong>Jira administrators</strong>. The report shows one person's working time to
+another, so it is not available to ordinary users of your site. Settings and the manual
+scan are likewise restricted.</p>
 
 <h2>What the app stores, and where</h2>
-<p>Storage uses Atlassian Forge's hosted key-value store. The data stays within the
-Atlassian infrastructure serving your site, under Atlassian's own security and data
-residency arrangements. We operate no database and hold no copy.</p>
+<p>Storage uses Atlassian Forge's hosted key-value store, inside the Atlassian
+infrastructure serving your site. We operate no database and hold no copy.</p>
 <table>
   <tr><th>Stored</th><th>Contents</th><th>Retention</th></tr>
   <tr>
@@ -62,41 +75,126 @@ residency arrangements. We operate no database and hold no copy.</p>
   </tr>
   <tr>
     <td>Roster</td>
-    <td>Account ID and display name of the people the report covers. Required because the
-    scheduled scan runs without a signed-in user and cannot list Jira users on its own.</td>
-    <td>Refreshed each time the app is opened. Removed on uninstall.</td>
+    <td>Account ID and display name of the people the report covers. Needed because the
+    scheduled scan runs with no signed-in user and cannot list Jira users on its own.</td>
+    <td>Replaced each time an administrator opens the app. Deleted on uninstall.</td>
   </tr>
   <tr>
     <td>Weekly history</td>
-    <td>One record per week: the week's dates, and for each person who logged less than
-    expected, their account ID, display name and the shortfall in hours.</td>
-    <td><strong>26 weeks maximum.</strong> Older weeks are deleted automatically.</td>
+    <td>Per week: the week's dates, the number of people checked, the time of the check,
+    and for each person short of their expected hours, their account ID, display name and
+    the shortfall.</td>
+    <td><strong>26 weeks.</strong> Records older than that are deleted automatically, both
+    when the scan runs and whenever an administrator opens the app.</td>
   </tr>
 </table>
-<p>No worklog is ever copied into this store. Hours shown on screen are read from Jira
-each time a report is run.</p>
+<p>No worklog is ever copied into this store. Hours on screen are read from Jira each time
+a report runs.</p>
+<p>People who leave your organisation remain in the weekly history until their records age
+out, because the history is a record of weeks that already happened. Removing someone from
+Jira, or excluding them in Settings, stops them appearing in new reports.</p>
 
-<h2>Who else sees it</h2>
-<p>Nobody. There are no sub-processors, no third-party services, no external APIs. We do
-not sell, rent or share any data, and we have no technical means of accessing a
-customer's stored data remotely.</p>
+<h2>How the app evaluates people</h2>
+<p>We describe this plainly, because it concerns people's working lives.</p>
+<p>Once a week the app totals the hours each person logged over the previous completed
+week and compares that to the hours their employer configured for them, after deducting
+weekends, configured public holidays and any per-person exemption. If the total is lower,
+the person is recorded as short by the difference. The app then counts how many of the most
+recent consecutive weeks each person has been short, and highlights anyone short for three
+weeks running.</p>
+<p>It is a comparison of two numbers. It knows nothing about leave, sickness, part-time
+arrangements the employer has not configured, or work done outside Jira, and it is only as
+accurate as the worklogs your colleagues write. <strong>The app takes no decision about
+anyone.</strong> It produces a figure for a human to interpret, and your employer must not
+base a disciplinary measure on it alone. If a figure about you looks wrong, ask your
+employer to correct the underlying worklog or the configured expectation.</p>
 
-<h2>Roles under data protection law</h2>
-<p>Where the GDPR or comparable law applies, the customer organisation installing the app
-is the <strong>data controller</strong> and we act as a <strong>data processor</strong> on
-their instructions. The
-<a href="dpa.html">Data Processing Addendum</a> sets out the terms of that relationship.</p>
-<p>The app processes information about employees' working time. Requests from individuals
-to access, correct or erase their data should be addressed to their own organisation,
-which controls the Jira site and can remove the data directly.</p>
+<h2>Where we are, and what that means</h2>
+<p>We are established in Côte d'Ivoire, outside the European Economic Area, in a country
+for which the European Commission has issued no adequacy decision.</p>
+<p>Your data is not stored there and we hold no copy of it. But under Chapter V of the
+GDPR, a transfer is about <em>who the data becomes available to</em>, not about where the
+servers sit, and remote access from a third country counts. Appointing us is therefore a
+transfer. We rely on the European Commission's <strong>Standard Contractual Clauses</strong>
+(Implementing Decision (EU) 2021/914, Module Two, controller to processor), incorporated in
+the <a href="dpa.html">Data Processing Addendum</a>. A copy is free on request.</p>
+<p>We have carried out a transfer impact assessment, also available on request. Its central
+finding is simple: <strong>there is nothing at our end to seize.</strong> We hold no copy
+of your data, no credentials to your site, no server and no database, so we could not
+comply with a demand for it from any authority, in Côte d'Ivoire or anywhere else.</p>
+
+<h2>What we can and cannot reach</h2>
+<p>We state this precisely instead of absolutely, because absolute claims about vendor
+access are rarely true of anyone.</p>
+<ul>
+  <li>We hold no credentials to your Atlassian site and cannot sign in to it.</li>
+  <li>Forge gives a developer no interface or command to read a customer installation's
+  stored data. We cannot retrieve your settings, roster or history.</li>
+  <li>We do write the code that runs on your data inside Forge. That is the one real
+  access path, and the commitments covering it are in the Addendum.</li>
+  <li>Forge application logs may be visible to us depending on Atlassian's platform
+  behaviour and your own configuration. The app writes only aggregate counts to its logs,
+  never a name, an account ID or an hours figure, and the scheduled scan catches its own
+  errors so that nothing specific to you reaches a stack trace.</li>
+</ul>
+
+<h2>Sub-processors</h2>
+<p><strong>Atlassian Pty Ltd</strong> and its affiliates, which provide the Forge runtime
+the app executes on and the storage it writes to. You already engage Atlassian directly for
+Jira itself; we name it here so your own records are complete.</p>
+<p>There is no other. The app performs no outbound network call to anything but the
+Atlassian APIs of your own site, which you can verify yourself: its manifest declares no
+egress permission, and adding one would require a major version that your administrator
+would have to approve before it could take effect.</p>
+<p>One detail for completeness: avatars shown in the report are loaded by your own browser
+from the URLs Jira supplies, which we neither choose nor control.</p>
+
+<h2>What we process as controller</h2>
+<p>Separately from the app, a small amount of personal data reaches us directly.</p>
+<table>
+  <tr><th>What</th><th>Why, and lawful basis</th><th>How long</th></tr>
+  <tr>
+    <td><strong>Marketplace licence records.</strong> Name, business email, organisation,
+    country and licence dates of your technical and billing contacts, provided to us by
+    Atlassian for paid apps.</td>
+    <td>To administer the licence, provide support and meet accounting obligations.
+    Performance of a contract (Art. 6(1)(b)) and legal obligation (Art. 6(1)(c)).</td>
+    <td>For the licence term, then as accounting law requires.</td>
+  </tr>
+  <tr>
+    <td><strong>Support correspondence.</strong> Your email address, your message and
+    anything you attach.</td>
+    <td>To answer you and improve the app. Legitimate interest in providing support
+    (Art. 6(1)(f)).</td>
+    <td>24 months after the last message.</td>
+  </tr>
+</table>
+<p><strong>Please do not send us screenshots or exports containing employees' names.</strong>
+Redact them, or send account IDs. Support mail reaches us in Côte d'Ivoire, and unlike the
+app itself that is an ordinary transfer of data to a third country. If you do send such
+material, we use it only to resolve your request and delete it when the request closes.</p>
+<p>This website is static. It sets no cookie and runs no script.</p>
+
+<h2>Your rights</h2>
+<p>For data inside the app, your employer controls it: ask them to access, correct or erase
+it, and they can do so directly. For the licence and support data above, where we are the
+controller, you may ask us for access, rectification, erasure, restriction of processing
+and portability, and you may object to processing based on our legitimate interest.</p>
+<p><strong>You also have the right to lodge a complaint with a data protection supervisory
+authority</strong> in your country of residence or work.</p>
+<p>If a data subject contacts us about data we hold as processor, we will not answer on the
+substance; we will refer them to their employer and tell the employer without undue
+delay.</p>
 
 <h2>Deleting everything</h2>
-<p>Uninstalling the app removes all data it stored. Nothing is retained, archived or
-backed up by us, because we never held it.</p>
+<p>Uninstalling the app triggers a cleanup that deletes its settings, roster and history.
+We retain no copy, because we never held one. Licence records we hold as controller follow
+the retention stated above.</p>
 
 <h2>Changes</h2>
-<p>If this policy changes materially, the updated version is published here with a new
-date. The Marketplace listing always links to the current version.</p>
+<p>Material changes are published here with a new version number and date, and previous
+versions remain available in the page history linked at the top. For the Addendum we also
+notify the technical contact on your licence.</p>
 
 <footer>
 Missing Time is an independent app and is not affiliated with or endorsed by Atlassian.

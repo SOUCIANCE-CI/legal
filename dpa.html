@@ -11,20 +11,29 @@
 <nav><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="dpa.html">Data processing</a></nav>
 
 <h1>Data Processing Addendum</h1>
-<p class="sub">Missing Time for Jira. Last updated 18 October 2026.</p>
+<p class="sub">Missing Time for Jira. Version 2, 18 October 2026.</p>
 
 <p>This addendum forms part of the <a href="terms.html">End User Licence Agreement</a> and
-applies where we process personal data on your behalf under the GDPR, the UK GDPR, or
+applies where we process personal data on your behalf under the GDPR, the UK GDPR or
 comparable legislation.</p>
 
-<h2>1. Roles</h2>
-<p>You are the <strong>controller</strong>. We are the <strong>processor</strong>. You
-decide why and how personal data is processed; we process it only on your documented
-instructions, which for this app means operating the features you have enabled.</p>
+<h2>1. Roles and instructions</h2>
+<p>You are the <strong>controller</strong>. We are the <strong>processor</strong>.</p>
+<p>We process personal data only on your documented instructions, <strong>including with
+regard to transfers to a third country</strong>, unless required to do so by law to which
+we are subject; in that case we will inform you of the requirement before processing,
+unless the law prohibits it on important grounds of public interest. Your documented
+instructions are this addendum, the Licence Agreement, the configuration you set in the
+app, and any further written instruction you give us.</p>
+<p><strong>If an instruction appears to us to infringe data protection law, we will tell
+you immediately</strong>, and may suspend it until it is withdrawn, amended or
+confirmed.</p>
+<p>The nature of the processing is automated reading, calculation, comparison and
+short-term retention of working-time data. The purposes are those you set: identifying who
+has logged less time than you expect, and keeping a limited history of that comparison.</p>
 
 <h2>2. Subject matter and duration</h2>
-<p>Subject matter: reporting on time logged in your Jira site. Duration: for as long as
-the app is installed.</p>
+<p>Reporting on time logged in your Jira site, for as long as the app is installed.</p>
 
 <h2>3. Categories of data subject</h2>
 <p>Users of your Jira site, typically your employees and contractors.</p>
@@ -37,47 +46,211 @@ the app is installed.</p>
   <tr><td>Avatar URL</td><td>Yes</td><td>No</td></tr>
   <tr><td>Time logged per person per day</td><td>Yes</td><td>No</td></tr>
   <tr><td>Weekly shortfall against expected hours</td><td>Derived</td><td>Yes, 26 weeks</td></tr>
+  <tr><td>Consecutive weeks short (a behavioural measure)</td><td>Derived</td><td>Yes, 26 weeks</td></tr>
   <tr><td>Expected hours and exclusion flags per person</td><td>Set by you</td><td>Yes</td></tr>
 </table>
-<p>No special categories of personal data within the meaning of Article 9 GDPR are
-processed. The app does not read issue content, comments, attachments or email addresses.</p>
+<p>No special category data within the meaning of Article 9 GDPR is processed by design.
+The app does not use issue summaries, descriptions, comments or attachments, and does not
+use email addresses.</p>
+<p>Two technical facts stated precisely. First, Jira's worklog objects may themselves
+contain a <strong>free-text worklog comment</strong> and the author's profile fields. These
+are present in the API responses the app receives and are discarded at the boundary: the
+app retains only the author's account ID, the start date and the duration. Second,
+<code>read:jira-work</code> is broader than what the app uses, because Atlassian offers no
+narrower worklog-only scope. We request the narrowest scope available, not the narrowest
+imaginable.</p>
+<p>You remain responsible for assessing whether patterns in shortfall data could, in your
+organisation, reveal special category information about someone.</p>
 
-<h2>5. Sub-processors</h2>
-<p><strong>None.</strong> The app performs no outbound network call to any system other
-than the Atlassian APIs of your own site. All processing and all storage take place within
-Atlassian's infrastructure, which you already engage directly as your own processor for
-Jira. We therefore engage no sub-processor and have no list to maintain.</p>
+<h2>5. Confidentiality</h2>
+<p>We are an individual developer. No other person has access to the app's source, its
+deployment pipeline or our Atlassian developer account, which is protected by multi-factor
+authentication. We are bound by a duty of confidentiality in respect of all personal data
+processed under this addendum, surviving termination. Were we ever to authorise another
+person to process personal data on your behalf, we would first bind them in writing to
+confidentiality and update section 6 before they obtained any access.</p>
 
-<h2>6. International transfers</h2>
-<p>We initiate no transfer of personal data. Data remains within the Atlassian
-infrastructure serving your site, subject to Atlassian's own data residency arrangements,
-over which we exercise no control and to which we add nothing.</p>
+<h2>6. Sub-processors</h2>
+<p>You give us your <strong>general written authorisation</strong> to engage
+sub-processors, on the conditions in this section.</p>
+<p>Our sole sub-processor is <strong>Atlassian Pty Ltd</strong> and its affiliates, which
+provide the Forge runtime the app executes on and the key-value store it writes to. You
+already engage Atlassian directly for Jira itself; we name it here so your records are
+complete.</p>
+<p>We engage no other. The app performs no outbound network call to any system other than
+the Atlassian APIs of your own site, which is verifiable from the absence of any egress
+permission in its manifest.</p>
+<p>If we intend to add or replace a sub-processor we will notify the technical contact on
+your licence and publish the change here at least <strong>thirty days</strong> in advance.
+You may object on reasonable data protection grounds within that period; if we cannot
+resolve the objection you may uninstall and terminate. Any sub-processor would be bound by
+written contract to the same obligations as this addendum, and we remain <strong>fully
+liable to you for its performance</strong>.</p>
 
-<h2>7. Security</h2>
-<p>The app runs on Atlassian Forge, which provides the hosting, isolation, encryption in
-transit and at rest, and access control. We hold no credentials to your site, operate no
-server, and have no remote access to stored data. Our own obligations are to request only
-the minimum scopes required, to store the minimum data required, and to delete it on
-uninstall.</p>
+<h2>7. International transfers</h2>
 
-<h2>8. Assisting you</h2>
-<p>Because all data is held in your own Jira site and in Forge storage attached to it, you
-can satisfy most data subject requests without us. Where you still need help, write to
-<a href="mailto:contact@souciance.com">contact@souciance.com</a> and we will
-assist within the limits of what the platform exposes to us.</p>
+<h3>7.1 Where the data is</h3>
+<p>No personal data processed by the app is stored, copied, downloaded or hosted in
+Côte d'Ivoire or on any system we operate. All processing and storage happen inside the
+Atlassian Forge infrastructure serving your site. We operate no server, no database and no
+backup. The manifest declares no egress permission, so the app is technically incapable of
+sending data outside the Atlassian APIs of your own site; adding such a permission would
+require a new major version, presented to your administrator for explicit re-approval
+before it could take effect.</p>
 
-<h2>9. Personal data breach</h2>
-<p>If we become aware of a breach affecting personal data processed by the app, we will
-notify you without undue delay with the information available to us.</p>
+<h3>7.2 Why it is nonetheless a transfer</h3>
+<p>Under Chapter V GDPR, a transfer occurs where a controller or processor subject to the
+GDPR makes personal data available to an entity in a third country. Remote access from a
+third country is a transfer even where the data never leaves the EEA. Because we are
+established in Côte d'Ivoire, a country without an adequacy decision, and act as your
+processor, appointing us is a transfer notwithstanding section 7.1.</p>
+<p>We therefore rely on the <strong>Standard Contractual Clauses</strong> adopted by
+Commission Implementing Decision (EU) 2021/914 of 4 June 2021, <strong>Module Two
+(controller to processor)</strong>, which are incorporated into this addendum by reference
+and form an integral part of it. Where the UK GDPR applies, the UK International Data
+Transfer Addendum to those Clauses applies. Where Swiss law applies, the Clauses apply with
+the amendments published by the Swiss Federal Data Protection and Information
+Commissioner. A signed copy is free on request to
+<a href="mailto:contact@souciance.com">contact@souciance.com</a>.</p>
+<p>For the purposes of the Clauses, the annexes are the Schedule to this addendum and the
+docking clause (Clause 7) applies.</p>
+<p><strong>In case of conflict, the Standard Contractual Clauses prevail over any other
+provision of this addendum or of the Licence Agreement, including its governing law and
+jurisdiction clause.</strong></p>
 
-<h2>10. Deletion</h2>
-<p>Uninstalling the app deletes everything it stored. We retain no copy, since we never
-hold one.</p>
+<h3>7.3 Supplementary measures</h3>
+<p>Following Case C-311/18 (Schrems II) we have carried out a transfer impact assessment,
+available on request and reviewed at least annually. Its central finding is that
+<strong>there is nothing at our end to seize</strong>: we hold no copy of the data and no
+means of access to it, so we would be unable to comply with a disclosure demand from any
+public authority. We additionally commit that:</p>
+<ul>
+  <li><strong>No local copy.</strong> We will not download, export or replicate personal
+  data out of the Atlassian infrastructure, by any means, including for debugging.</li>
+  <li><strong>No egress.</strong> We will not introduce an outbound network permission
+  without first updating this addendum. Such a change is in any event subject to your
+  administrator's prior approval.</li>
+  <li><strong>No personal data in logs.</strong> Logging is restricted to aggregate counts
+  and non-personal diagnostics.</li>
+  <li><strong>Public authority requests.</strong> We will handle any such request under
+  Clause 15 of the Clauses: notify you promptly where lawful, challenge it where there are
+  grounds, and disclose the minimum if compelled. We report annually on request, including
+  nil returns.</li>
+</ul>
 
-<h2>11. Audit</h2>
-<p>On reasonable written request, we will provide the information needed to demonstrate
-compliance with this addendum. The app's source behaviour, the scopes it requests and the
-data it stores are described in the <a href="privacy.html">Privacy Policy</a>.</p>
+<h2>8. Security (Article 32)</h2>
+<p>Taking account of the state of the art, the costs, and the nature, scope, context and
+purposes of the processing, we implement and will not degrade the following measures.</p>
+<ul>
+  <li><strong>Architecture.</strong> The app runs entirely within Atlassian Forge. We
+  operate no server, no database and no backup, and hold no credentials to your site.</li>
+  <li><strong>Encryption.</strong> In transit and at rest, provided by the Forge
+  platform.</li>
+  <li><strong>Minimisation.</strong> The narrowest scopes Atlassian offers for the
+  function. No worklog, no avatar and no email address is stored. Records are keyed on
+  account IDs.</li>
+  <li><strong>Access control.</strong> The report, its settings and the manual scan require
+  Jira administrator permission. Our developer account, the only route by which the code
+  can change, uses multi-factor authentication.</li>
+  <li><strong>Logging.</strong> Aggregate, non-personal diagnostics only. The scheduled
+  scan catches its own errors so that nothing customer-specific reaches a stack trace.</li>
+  <li><strong>Restoration.</strong> Provided by the Forge platform. Most stored data can be
+  rebuilt from your own Jira worklogs.</li>
+  <li><strong>Testing.</strong> Each release is reviewed to re-verify that the manifest
+  declares no egress permission and no write scope.</li>
+</ul>
+
+<h2>9. Assisting you</h2>
+
+<h3>9.1 Data subject rights</h3>
+<p>We assist you, by appropriate technical and organisational measures and so far as
+possible, in responding to requests under Chapter III GDPR. In practice everything the app
+holds about a person is visible to you in the app and in your own Jira site, so you can
+satisfy most requests without us. If a request needs action only we can take, write to
+<a href="mailto:contact@souciance.com">contact@souciance.com</a>; we acknowledge within
+<strong>two business days</strong> and respond substantively within <strong>ten business
+days</strong>, or sooner where your own deadline requires. If a data subject contacts us
+directly we will not answer on the substance; we refer them to you and tell you without
+undue delay.</p>
+
+<h3>9.2 Articles 32 to 36</h3>
+<p>We assist you in complying with Articles 32 to 36 GDPR, taking account of the nature of
+the processing and the information available to us. In particular:</p>
+<ul>
+  <li><strong>Article 35.</strong> Because this app involves systematic monitoring of
+  employees and produces a behavioural measure, you are likely to be required to carry out
+  a <strong>data protection impact assessment</strong>. We maintain a DPIA support pack
+  describing the data flows, storage, retention, the scheduled scan and the consecutive
+  weeks calculation, free on request, and we answer reasonable written questions about
+  it.</li>
+  <li><strong>Article 36.</strong> If you must consult your supervisory authority before
+  processing, we provide the information it asks of you about the app.</li>
+</ul>
+
+<h2>10. Personal data breach</h2>
+<p>We notify you of any personal data breach affecting personal data processed on your
+behalf <strong>without undue delay and in any event within twenty-four hours</strong> of
+becoming aware. We notify the technical contact on your licence and any security contact
+you give us. We will not notify a supervisory authority or a data subject on your behalf
+unless you instruct us to.</p>
+<p>So far as available to us, the notification describes the nature of the breach including
+the categories and approximate number of data subjects and records concerned, a contact
+point, the likely consequences, and the measures taken or proposed. Where we cannot provide
+all of it at once we provide it in phases rather than delay the first notification.</p>
+<p><strong>Where a breach would realistically come from.</strong> We hold no copy of your
+data and no credentials, so we are unlikely to detect one first. Two scenarios are real.
+An incident at Atlassian affecting Forge, which Atlassian would normally notify you of
+directly and which we pass on regardless. Or compromise of our Atlassian developer account,
+the only route by which the code running on your data could be altered; if we have any
+reason to believe it has been compromised we notify you, inform Atlassian immediately and
+request suspension of the app, whether or not we have evidence that data was affected.</p>
+<p>We document every such breach and make the documentation available to you and your
+supervisory authority on request.</p>
+
+<h2>11. Return and deletion</h2>
+<p><strong>At your choice</strong>, we delete or return all personal data processed on your
+behalf at the end of the service, and delete existing copies, unless law requires
+retention.</p>
+<p>Deletion is the default: uninstalling triggers a cleanup in which the app deletes its
+settings, roster and history. We retain no copy at any time because we never hold one.</p>
+<p>To receive data back first, export the current report and the weekly history from within
+the app at any time, free, in a structured and machine-readable form.</p>
+
+<h2>12. Audit</h2>
+<p>We make available all information necessary to demonstrate compliance with Article 28
+and this addendum, and we <strong>allow for and contribute to audits, including
+inspections</strong>, by you or an auditor you mandate.</p>
+<p>In practice, since we operate no systems of our own holding your data, the following
+normally satisfies an audit and is free on written request: this addendum and its Schedule;
+the manifest showing the scopes requested and the absence of egress; a description of every
+storage key, its contents and retention; our transfer impact assessment; our DPIA support
+pack; and our Article 30(2) record as it relates to you.</p>
+<p>If that is insufficient, you may request an audit once in any twelve-month period, on
+thirty days' notice, subject to confidentiality, at your cost, conducted remotely. A
+supervisory authority exercising its powers is not subject to those limits. Where an audit
+finds a non-conformity we remediate it at our cost without undue delay.</p>
+
+<h2>13. Your responsibilities as controller</h2>
+<p>This app processes the working time of identified individuals. You are responsible
+for:</p>
+<ul>
+  <li>determining and documenting a <strong>lawful basis</strong>. Note that consent is
+  generally not valid in an employment relationship, because of the imbalance of
+  power;</li>
+  <li>carrying out a <strong>data protection impact assessment</strong> where required,
+  which we expect will usually be the case. We assist under section 9.2;</li>
+  <li>informing the individuals concerned under Articles 13 and 14, including about the
+  weekly history and the consecutive-weeks measure;</li>
+  <li>completing any <strong>information, consultation or co-determination procedure with
+  employee representatives</strong> required where your people work. This is not a
+  formality: deploying a time-monitoring tool engages the works council in several
+  countries, and in some of them data gathered without that step cannot lawfully be used at
+  all;</li>
+  <li>ensuring <strong>no decision producing legal effects or similarly significantly
+  affecting someone, including any disciplinary measure, is taken solely</strong> on the
+  app's output;</li>
+  <li>keeping the roster current by opening the app after a departure.</li>
+</ul>
 
 <footer>
 Missing Time is an independent app and is not affiliated with or endorsed by Atlassian.
